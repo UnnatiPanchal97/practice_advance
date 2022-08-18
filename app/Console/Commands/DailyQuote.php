@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class DailyQuote extends Command
 {
@@ -39,16 +40,16 @@ class DailyQuote extends Command
         ];
         $key = array_rand($quotes);
         $data = $quotes[$key];
-         
+
         $users = User::all();
         foreach ($users as $user) {
-            \Mail::raw("{$key} -> {$data}", function ($mail) use ($user) {
+            Mail::raw("{$key} -> {$data}", function ($mail) use ($user) {
                 $mail->from('unnati@topsinosolutions.com');
                 $mail->to($user->email)
                     ->subject('Daily New Quote!');
             });
         }
-         
+
         $this->info('Successfully sent daily quote to everyone.');
         return 0;
     }

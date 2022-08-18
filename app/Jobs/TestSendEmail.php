@@ -9,7 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Mail\TestHelloEmail;
-
+use Illuminate\Support\Facades\Mail;
 
 class TestSendEmail implements ShouldQueue
 {
@@ -33,6 +33,6 @@ class TestSendEmail implements ShouldQueue
     public function handle()
     {
         $email = new TestHelloEmail();
-        \Mail::to('unni789panchal@gmail.com')->send($email);
+        Mail::to('unni789panchal@gmail.com')->send($email);
     }
 }

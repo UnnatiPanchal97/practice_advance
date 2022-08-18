@@ -6,7 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
-{   
+{
     protected $commands=[
         Commands\TestCron::class,
         Commands\DailyQuote::class,
@@ -21,7 +21,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')->hourly();
         $schedule->command('test:cron')->everyMinute();
-        $schedule->command('quote:daily')->daily();
+        $schedule->command('quote:daily')->timezone('asia/kolkata')->at('11:00');
     }
 
     /**
