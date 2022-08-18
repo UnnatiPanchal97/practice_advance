@@ -16,7 +16,6 @@ use App\Http\Controllers\RoleController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,9 +23,6 @@ Route::get('components', function (){
     return view('master');
   });
 Auth::routes();
-
-
-
 Route::get('sending-queue-emails', [TestQueueEmails::class,'sendTestEmails']);
 
 Route::group(['middleware' => ['auth']], function() {
@@ -35,10 +31,3 @@ Route::group(['middleware' => ['auth']], function() {
   Route::resource('/roles', RoleController::class);
   Route::resource('/users', UserController::class);
 });
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

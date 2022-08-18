@@ -8,7 +8,7 @@
                 <h2>{{__('create post')}}</h2>
             </div>
             <div class="pull-right">
-
+                <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
             </div>
         </div>
         @if ($errors->any())
