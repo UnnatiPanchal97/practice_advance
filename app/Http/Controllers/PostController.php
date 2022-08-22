@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Events\PostCreated;
+use App\Rules\GoogleRecaptcha;
 
 class PostController extends Controller
 {
@@ -50,6 +51,7 @@ class PostController extends Controller
         request()->validate([
             'name' => 'required',
             'description' => 'required',
+            'g-recaptcha-response' => ['required', new GoogleRecaptcha]
         ]);
 
         $posts=Post::create($request->all());

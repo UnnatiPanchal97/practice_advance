@@ -19,6 +19,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
     <div id="app">
