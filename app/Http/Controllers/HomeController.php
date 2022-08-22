@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Notifications\EmailNotification;
+use Notification;
+
 
 class HomeController extends Controller
 {
@@ -26,5 +28,20 @@ class HomeController extends Controller
     {
         $userEmail=user_email();
         return view('home',compact('userEmail'));
+    }
+    public function sendNotification()
+    {
+        $user = User::all();
+
+        $data = [
+            'greeting' => 'Hi',
+            'body' => 'This is email notification',
+            'thanks' => 'Thank you!',
+            'actionText' => 'View Site',
+            'actionURL' => url('/'),
+            'order_id' => 101
+        ];
+
+        Notification::send($user, new EmailNotification($data));
     }
 }

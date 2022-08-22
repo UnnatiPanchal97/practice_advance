@@ -59,19 +59,6 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')
                         ->with('success','Post created successfully.');
-        // $request->validate([
-        //     'name' => 'required',
-        //     'description' => 'required',
-        // ]);
-
-        // $posts=Post::create($request->all());
-
-        // event(new PostCreated($posts)); // dispatch event from here
-
-        // //You can use the below commented code
-        // //PostCreated::dispatch($post);
-
-        // return redirect()->route('posts.index')->with('success','Post created successfully.');
     }
 
     /**
