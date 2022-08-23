@@ -21,13 +21,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::latest()->paginate(2);
-        return view('posts.index',compact('posts'))
-            ->with('i', (request()->input('page', 1) - 1) * 2);
-        // $posts=Post::paginate(2);
-        // return view('posts.index',compact('posts'))->with('i', (request()->input('page', 1) - 1) * 2);
+        if ($request->filled('search')) {
+            $posts = Post::search($request->search)->paginate(2); // search by value
+        } else {
+            $posts = Post::latest()->paginate(2);
+        }
+        return view('posts.index',compact('posts'))->with('i', (request()->input('page', 1) - 1) * 2);
     }
 
     /**
