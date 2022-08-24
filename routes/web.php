@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -32,4 +33,5 @@ Route::group(['middleware' => ['auth']], function() {
   Route::resource('/home/posts',PostController::class);
   Route::resource('/roles', RoleController::class);
   Route::resource('/users', UserController::class);
+  Route::get('/home/blogs',[HomeController::class,'showBlog']);
 });

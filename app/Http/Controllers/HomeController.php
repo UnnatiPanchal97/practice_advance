@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\User;
 use App\Notifications\EmailNotification;
 use Notification;
@@ -43,5 +44,10 @@ class HomeController extends Controller
         ];
 
         Notification::send($user, new EmailNotification($data));
+    }
+    public function showBlog(){
+        $blogs=Blog::latest()->paginate(2);
+        return view('blogs.index',compact('blogs'))->with('i', (request()->input('page', 1) - 1) * 2);
+        // return view('blogs.index');
     }
 }
